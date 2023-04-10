@@ -6,7 +6,11 @@
   "homepage": "https://github.com/ArtifexSoftware/mupdf",
   "supports": "!osx",
   "dependencies": [
-    "curl",
+    {
+   	"name": "curl",
+	"default-features": false,
+        "features": ["openssl"]
+    },
     "freetype",
     "glfw3",
     "gumbo",
