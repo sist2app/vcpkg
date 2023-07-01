@@ -3,21 +3,27 @@ vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO ArtifexSoftware/mupdf
-    REF f39eee48564274635e231e2ab652221cce2ec1bd # 1.21.1
-    SHA512 aa16d0939739f96c66ee802032c321adcebc86c9fa5bfe7ec64f20614377a4f61c358270216b57a1e4b1929337c4cc856d9ec4666ed8f0edaeaa7f2336a84ac3
+    REF "${VERSION}"
+    SHA512 8109630f4dba31ff05458b69626c99ab36ddd47be42c03dd1f3962bf2be5d520be97a1c7e97a72307faa57a96c1ff50e8e3a593c519e47e5eb71897e7e373825
     HEAD_REF master
     PATCHES
         dont-generate-extract-3rd-party-things.patch
-	#        use-if-instead-of-ifdef-in-writer.patch
 )
 
 file(COPY "${CMAKE_CURRENT_LIST_DIR}/CMakeLists.txt" DESTINATION "${SOURCE_PATH}")
+
+vcpkg_check_features(
+    OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        ocr ENABLE_OCR
+)
 
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     DISABLE_PARALLEL_CONFIGURE
     OPTIONS
         -DBUILD_EXAMPLES=OFF
+	${FEATURE_OPTIONS}
 )
 
 vcpkg_cmake_install()
