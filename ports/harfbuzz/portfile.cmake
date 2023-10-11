@@ -2,8 +2,10 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO harfbuzz/harfbuzz
     REF ${VERSION}
-    SHA512 47238586c399ede1095c60b7e065718308c396cab645fd5bd5c75e15357c068ff001b2b6624d44c7f6538b65faf549c0224bdb62131a1cea78418f3f57113c7e
+    SHA512 23d6abbd270885d7ae1ebb3c981f0c331a48d891e23caffe9e254f5e7e205bb0348add7b371526166a49b336f8076f92c11ef76ca81f48a6fd9f58812ec96d79
     HEAD_REF master
+    PATCHES
+        fix-win32-build.patch
 )
 
 if("icu" IN_LIST FEATURES)
@@ -35,9 +37,6 @@ list(APPEND FEATURE_OPTIONS -Dfreetype=enabled) #Enable freetype interop helpers
 #endif()
 
 if("introspection" IN_LIST FEATURES)
-    if(VCPKG_TARGET_IS_WINDOWS AND VCPKG_LIBRARY_LINKAGE STREQUAL "static")
-        message(FATAL_ERROR "Feature introspection currently only supports dynamic build.")
-    endif()
     list(APPEND OPTIONS_DEBUG -Dgobject=enabled -Dintrospection=disabled)
     list(APPEND OPTIONS_RELEASE -Dgobject=enabled -Dintrospection=enabled)
 else()

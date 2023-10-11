@@ -2,10 +2,11 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO libsdl-org/SDL
     REF "release-${VERSION}"
-    SHA512 90858ae8c5fdddd5e13724e05ad0970e11bbab1df8a0201c3f4ce354dc6018e5d4ab7279402a263c716aacdaa52745f78531dc225d48d790ee9307e2f6198695
+    SHA512 3199e535033c8728bd12b97931d5c5d7a7dcc9b0f502109ff722982601b6fbb00995d71cbaab7d3b780c738deece235ef76ab1963ce946084c482c2d31a4abe8
     HEAD_REF main
     PATCHES
         deps.patch
+        alsa-dep-fix.patch
 )
 
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" SDL_STATIC)
@@ -46,9 +47,11 @@ vcpkg_cmake_configure(
         -DSDL_TEST=OFF
         -DSDL_INSTALL_CMAKEDIR="cmake"
         -DCMAKE_DISABLE_FIND_PACKAGE_Git=ON
+        -DPKG_CONFIG_USE_CMAKE_PREFIX_PATH=ON
         -DSDL_LIBSAMPLERATE_SHARED=OFF
     MAYBE_UNUSED_VARIABLES
         SDL_FORCE_STATIC_VCRT
+        PKG_CONFIG_USE_CMAKE_PREFIX_PATH
 )
 
 vcpkg_cmake_install()

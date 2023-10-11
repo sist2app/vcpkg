@@ -1,11 +1,12 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO thorvg/thorvg
-    REF v0.9.0
-    SHA512 c0294a60f0b2e432bec62e1c44f0cb632420ec5c9390df210c8b8db5507fa8f5946bdc8a7879007e4e54865dc4538f4bf1e26d76f90a324cc5edd5cdf61c0fc0
+    REF v0.11.0
+    SHA512 abca41b95152d30fc20fd51383447958347e19b123c798b321bcc3ab6850c4f70edd1cd89dc60fdce866afa3f8ffe50a913cdfb4ffbf2d3c1384937cf80183d8
     HEAD_REF master
     PATCHES
         install-tools.patch
+        windows-build-option.patch
 )
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
@@ -15,9 +16,6 @@ else()
 endif()
 
 if ("tools" IN_LIST FEATURES)
-    if(VCPKG_TARGET_IS_WINDOWS)
-        message(FATAL_ERROR "This feature doesn't support Windows platform")
-    endif()
     list(APPEND BUILD_OPTIONS -Dtools=all)
 endif()
 
