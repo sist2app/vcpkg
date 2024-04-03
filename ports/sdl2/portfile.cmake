@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO libsdl-org/SDL
     REF "release-${VERSION}"
-    SHA512 3199e535033c8728bd12b97931d5c5d7a7dcc9b0f502109ff722982601b6fbb00995d71cbaab7d3b780c738deece235ef76ab1963ce946084c482c2d31a4abe8
+    SHA512 0a774a321a6f2834c198cbb9515a0df9fa0515c10520da5be3ab8f336fadd554fefd0f59518be3c7edc3b269966b7b1e44c0e530714209e381fe455478926bf8
     HEAD_REF main
     PATCHES
         deps.patch
@@ -15,11 +15,15 @@ string(COMPARE EQUAL "${VCPKG_CRT_LINKAGE}" "static" FORCE_STATIC_VCRT)
 
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
-        vulkan   SDL_VULKAN
-        x11      SDL_X11
-        wayland  SDL_WAYLAND
-        samplerate SDL_LIBSAMPLERATE
+        alsa     SDL_ALSA
+        alsa     CMAKE_REQUIRE_FIND_PACKAGE_ALSA
         ibus     SDL_IBUS
+        samplerate SDL_LIBSAMPLERATE
+        vulkan   SDL_VULKAN
+        wayland  SDL_WAYLAND
+        x11      SDL_X11
+    INVERTED_FEATURES
+        alsa     CMAKE_DISABLE_FIND_PACKAGE_ALSA
 )
 
 if ("x11" IN_LIST FEATURES)

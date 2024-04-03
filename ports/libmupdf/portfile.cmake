@@ -4,7 +4,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO ArtifexSoftware/mupdf
     REF "${VERSION}"
-    SHA512 83fabdcef1410dd70dcf8e5da1025f32061f4df04812ea7f3a08d28bed869208f25f72838ed7f603768bca47cf000c7468993b2880463aed495e625c44b01d64
+    SHA512 248340d2cde5d97b4ccfabbdf5e8f2080dba6233031fa384dcfdb98022ecfd7d7feebe38b19f9b94c2768bfef41c361417c73240ea7f8a458c6b9ea9cfedf665
     HEAD_REF master
     PATCHES
         dont-generate-extract-3rd-party-things.patch
