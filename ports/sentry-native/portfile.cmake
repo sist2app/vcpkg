@@ -1,7 +1,7 @@
 vcpkg_download_distfile(ARCHIVE
     URLS "https://github.com/getsentry/sentry-native/releases/download/${VERSION}/sentry-native.zip"
     FILENAME "sentry-native-${VERSION}.zip"
-    SHA512 bf6d9aef8129d9ad9b1617e03bf7ac5e4ac5572ac87546f9428a359c4fc3364d2591cc001e7a28f50509d5cfddab9a17da2d4a33e344280fd490c8fe5173f2c7
+    SHA512 a7e363d6ce119d88a34c3503107c338eb59f0faaedb107f66ebbc7ce4cb89500ff53fc9fad4ffdde5aa5235f6d72e9ed4bf978432e35752340dc1735518d8b0d
 )
 
 vcpkg_extract_source_archive(
@@ -9,8 +9,8 @@ vcpkg_extract_source_archive(
     ARCHIVE "${ARCHIVE}"
     NO_REMOVE_ONE_LEVEL
     PATCHES
-        fix-config-cmake.patch
         fix-crashpad-wer.patch
+        fix-usage-runtime.patch
 )
 file(REMOVE_RECURSE "${SOURCE_PATH}/external/crashpad/third_party/zlib/zlib")
 
@@ -31,6 +31,10 @@ endif()
 
 if("wer" IN_LIST FEATURES)
     vcpkg_list(APPEND options "-DSENTRY_TRANSPORT_CRASHPAD_USE_WER=ON")
+endif()
+
+if("compression" IN_LIST FEATURES)
+    vcpkg_list(APPEND options "-DSENTRY_TRANSPORT_COMPRESSION=ON")
 endif()
 
 if(VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_TARGET_IS_MINGW)

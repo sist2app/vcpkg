@@ -3,8 +3,8 @@ vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO protocolbuffers/protobuf
-    REF d30e326ca1f511ab537d9b2f73ce69b2f8f0c865
-    SHA512 5f22493cfb6536d3a8a7bd752505baccacb85b0eade53b35763c3a30fab9197a8ff04bc9d4b6c2f66dc295b77c09a1b670d242f509f8705c0d699767d222eb38
+    REF "v${VERSION}"
+    SHA512 a188d109f317c0cff1d57c3d81b307ff46db816774af2eb4edc39b136725bb3ed70fafbcffcdf9465f6f948a1e7dfc0175f75b17acd414e5ae543939a510688a
     HEAD_REF main
     PATCHES
         fix-cmake.patch

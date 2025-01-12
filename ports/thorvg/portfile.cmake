@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO thorvg/thorvg
     REF "v${VERSION}"
-    SHA512 fb61e46e1a5f62ccff5ee9a1dc65dd37bbbc8c4ce0e3d0c5a4c343001e72f143d9011a25178389a74562e6e7ebf76af1c5cdbc18aec8dc50ef29f7b645c035ac
+    SHA512 e81dd47a48772653598f647c6f625e9072e2d70641185c969679db92b34a23738b1bb57360ee44bf97fd39b25b14d59805b981c7e8a6efb9b920d551638dcc5f
     HEAD_REF master
 )
 
@@ -23,12 +23,13 @@ vcpkg_configure_meson(
         # see ${SOURCE_PATH}/meson_options.txt
         -Dengines=['sw']
         -Dloaders=all
-        -Dsavers=tvg
-        -Dvector=true # This assumes AVX
+        -Dsavers=all
+        -Dsimd=false # The reason for setting 'Dsimd=false' was that the creator said a false setting was necessary
         -Dbindings=capi
         -Dtests=false
         -Dexamples=false
         -Dstrip=false
+        -Dextra=['']
     OPTIONS_DEBUG
         -Dlog=true
         -Dbindir=${CURRENT_PACKAGES_DIR}/debug/bin
