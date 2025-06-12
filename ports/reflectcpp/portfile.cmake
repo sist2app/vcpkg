@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO getml/reflect-cpp
     REF "v${VERSION}"
-    SHA512 9c5034e6d964a1ae817cb14e4cd0d19ccb69e703affd8c070105ace63f2f0f59079ae450c1de7a19d3e35faf471dcd5e4bbd56cd3f0594f23059dfc45f622ac0 
+    SHA512 035f93845eda11f3a9b804e0e6bf0312f277426966a7e1ac25722902d98b79a01f708bf3e608130633e8ac1ae512d544927cd9b94d4f19c794630404c3a92565 
     HEAD_REF main
 )
 
@@ -14,8 +14,11 @@ string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "dynamic" REFLECTCPP_BUILD_SHARE
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
         bson                REFLECTCPP_BSON
+        capnproto           REFLECTCPP_CAPNPROTO
+        cbor                REFLECTCPP_CBOR
         flexbuffers         REFLECTCPP_FLEXBUFFERS
         msgpack             REFLECTCPP_MSGPACK
+        toml                REFLECTCPP_TOML
         ubjson              REFLECTCPP_UBJSON
         xml                 REFLECTCPP_XML
         yaml                REFLECTCPP_YAML

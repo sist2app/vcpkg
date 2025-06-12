@@ -11,13 +11,11 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO openssl/openssl
     REF "openssl-${VERSION}"
-    SHA512 d5f78b2e9d7b7b4787c976c4f832b1448bbadf5f9d398a50ef98053f92501768d000aa73673af200568aef4c8a491442ebbee8c43556838f465d4f91dfc2b5ad
+    SHA512 a1ef09ecc810b761b3adcdb79b5746ba06244a10f626a40e495a3df19411546b98d75f6c7e7c13de7c15753caf3db87af7096ed0bb835afed8cc6dbc366b542f
     PATCHES
         cmake-config.patch
         command-line-length.patch
-        mkbuildinf.diff
         script-prefix.patch
-        asm-armcap.patch
         windows/install-layout.patch
         windows/install-pdbs.patch
         unix/android-cc.patch
